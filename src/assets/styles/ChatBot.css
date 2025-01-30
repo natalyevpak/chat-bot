@@ -1,18 +1,27 @@
 /* Chat Button */
 .chat-button {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    z-index: 1000;
-    border-radius: 8px;
-    width: 160px;
-    height: 40px;
-    transition: transform 0.2s ease-in-out;
-  }
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 1000;
+  border-radius: 8px;
+  width: 160px;
+  height: 40px;
+  background-color: #007bff !important; /* Explicitly set blue background */
+  color: white !important; /* Ensure text is visible */
+  border: none;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
   
-  .chat-button:hover {
-    transform: scale(1.05);
-  }
+.chat-button:hover {
+  background-color: #0056b3 !important;
+  transform: scale(1.05);
+}
   
   /* Chat Container */
   .chat-container {

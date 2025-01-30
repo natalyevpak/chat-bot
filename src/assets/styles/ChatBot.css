@@ -164,6 +164,10 @@
   transition: color 0.2s ease-in-out;
 }
 
+.chat-button .pi {
+  margin-right: 6px; /* Adds space between icon and text */
+}
+
 /* Hover effect for the send icon */
 .send-btn:hover .pi {
   color: #007bff;

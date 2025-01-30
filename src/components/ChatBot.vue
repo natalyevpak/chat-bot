@@ -5,6 +5,7 @@
       icon="pi pi-sparkles"
       class="chat-button" 
       @click="toggleChat"
+      iconPos="left"
     />
 
     <Transition name="slide">

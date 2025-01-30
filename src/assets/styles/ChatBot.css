@@ -1,4 +1,4 @@
-/* Chat Button */
+/* Chat Button with Gradient Animation */
 .chat-button {
   position: fixed;
   bottom: 40px;
@@ -7,7 +7,6 @@
   border-radius: 8px;
   height: 36px;
   width: 140px;
-  background-color: #007bff !important;
   color: white !important;
   border: none;
   font-weight: bold;
@@ -15,21 +14,39 @@
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: background 0.2s ease-in-out, transform 0.2s ease-in-out;
+  transition: transform 0.2s ease-in-out;
   font-size: 13.5px;
+
+  /* Gradient background with animation */
+  background: linear-gradient(90deg, #478CFF, #2E66FF, #4CC8FF);
+  background-size: 300% 300%;
+  animation: gradient-animation 6s ease infinite;
 }
 
 .chat-button:hover {
-  background-color: #0056b3 !important;
-  transform: scale(1.05);
+  transform: scale(1.03);
 }
+
+/* Gradient Animation */
+@keyframes gradient-animation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
 
 /* Chat Container */
 .chat-container {
   position: fixed;
   bottom: 80px;
   right: 12px;
-  width: 320px;
+  width: 420px;
   background: white;
   border-radius: 8px;
   z-index: 1000;
@@ -42,13 +59,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 6px 10px;
+  padding: 12px 8px 12px 92px;
   font-weight: bold;
-  font-size: 14px;
-  background: #007bff;
+  background: #2E66FF;
   color: white;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+  border-top-left-radius: 8px;
+  border-top-right-radius: 8px;
 }
 
 
@@ -63,7 +79,7 @@
   color: white;
   border: none;
   background: none;
-  font-size: 16px;
+  font-size: 12px;
   cursor: pointer;
 }
 
@@ -75,7 +91,6 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding-bottom: 40px;
 }
 
 /* Message Header */
@@ -87,7 +102,9 @@
   text-align: left;
   gap: 6px; /* Space between icon and text */
   padding-left: 2px;
-
+  font-size: 13px;
+  padding-bottom: 2px;
+  padding-top: 4px;
 }
 
 /* Align the user's message header to the right */
@@ -95,41 +112,59 @@
   text-align: right;
 }
 
-.assistant-icon {
-  color: #ffcc00; /* Yellow lightbulb */
-  font-size: 13px;
-}
-
-/* Style the User's profile icon */
-.user-icon {
-  color: #111315; /* Blue user icon */
-  font-size: 13px;
-  padding-right: 4px;
-}
 
 
 /* Message Styles */
 .message {
-  padding: 6px 10px;
+  padding: 10px 12px;
   border-radius: 8px;
   max-width: fit-content; /* Make message size adapt to text */
   min-width: 50px; /* Prevent very small messages */
   word-wrap: break-word;
   transition: all 0.3s ease-in-out;
+  font-size: 14px;
 }
 
 .user {
   align-self: flex-end;
-  background: #007bff;
-  color: white;
+  background: #d1d1d1;
+  color: rgb(0, 0, 0);
   margin-left: auto; /* Push user messages to the right */
 }
 
 .bot {
   align-self: flex-start;
-  background: #e0e0e0;
+  background: #d3edff;
   color: black;
 }
+
+.predefined-messages {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 4px; /* Moves spacing below instead of above */
+  margin-top: 40px; /* Moves spacing below instead of above */
+
+}
+
+
+.predefined-btn {
+  background-color: #d1d1d1 !important; /* Force gray background */
+  border: none !important;
+  color: white !important; /* Ensure text is dark */
+  font-size: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+  font-weight: normal !important; /* Ensure text is not bold */
+}
+
+.predefined-btn:hover {
+  background-color: #bcbcbc !important; /* Darker gray on hover */
+  border: none !important;
+}
+
+
 
 /* Chat Input */
 .chat-input {
@@ -170,7 +205,7 @@
 
 /* Hover effect for the send icon */
 .send-btn:hover .pi {
-  color: #007bff;
+  color: #2E66FF;
 }
 
 /* Slide Transition */
@@ -188,4 +223,10 @@
 
 :deep(.p-card-body) {
   padding: 0 !important;
+}
+
+.custom-input {
+  font-size: 14px; /* Set your desired font size */
+  padding: 8px;    /* Adjust padding if needed */
+  border-radius: 6px; /* Optional: Style the input further */
 }

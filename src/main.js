@@ -3,7 +3,7 @@ import './assets/main.css'
 import { createApp } from 'vue'
 import PrimeVue from 'primevue/config';
 import Lara from '@primevue/themes/lara';
-
+import 'primeicons/primeicons.css'
 import { definePreset } from '@primevue/themes';
 import App from './App.vue'
 

@@ -71,7 +71,7 @@ const sendMessage = () => {
   messages.value.push({ text: userInput.value, sender: 'user' });
 
   setTimeout(() => {
-    messages.value.push({ text: 'I am just a simple bot for now.', sender: 'bot' });
+    messages.value.push({ text: 'Works! We just need connect the nova bot.', sender: 'bot' });
   }, 500);
 
   userInput.value = '';

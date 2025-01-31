@@ -15,9 +15,9 @@
   };
 
   // Load styles dynamically
-  loadCSS('https://your-chatbot.netlify.app/assets/base.css');
-  loadCSS('https://your-chatbot.netlify.app/assets/main.css');
-  loadCSS('https://your-chatbot.netlify.app/assets/styles/ChatBot.css');
+  loadCSS('https://wialon-chat-bot.netlify.app/assets/base.css');
+  loadCSS('https://wialon-chat-bot.netlify.app/assets/main.css');
+  loadCSS('https://wialon-chat-bot.netlify.app/assets/styles/ChatBot.css');
 
   // Load Vue 3 & PrimeVue dynamically
   loadScript('https://unpkg.com/vue@3/dist/vue.global.prod.js', () => {

@@ -25,7 +25,7 @@
 
 .chat-button:hover {
   transform: scale(1.03);
-  background: linear-gradient(90deg, #478CFF, #2E66FF, #4CC8FF);
+  background: linear-gradient(90deg, #478CFF, #2E66FF, #4CC8FF) !important;
 }
 
 /* Gradient Animation */
@@ -82,6 +82,7 @@
   background: none;
   font-size: 12px;
   cursor: pointer;
+  padding-right: 2px;
 }
 
 /* Chat Messages */
@@ -145,7 +146,6 @@
   justify-content: center;
   margin-bottom: 4px; /* Moves spacing below instead of above */
   margin-top: 40px; /* Moves spacing below instead of above */
-
 }
 
 
@@ -158,6 +158,7 @@
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
   font-weight: normal !important; /* Ensure text is not bold */
+  padding: 6px;
 }
 
 .predefined-btn:hover {

@@ -12,7 +12,6 @@ const loadChatBot = () => {
   app.mount('#wialon-chatbot');
 };
 
-// Function to Load External CSS
 const loadCSS = (href) => {
   const link = document.createElement('link');
   link.rel = 'stylesheet';
@@ -23,8 +22,6 @@ const loadCSS = (href) => {
 // Load PrimeIcons
 loadCSS('https://unpkg.com/primeicons/primeicons.css');
 
-// Load ChatBot.css (Ensure the correct path based on your deployment)
-loadCSS('https://wialon-chat-bot.netlify.app/assets/styles/ChatBot.css');
 
 // Automatically load the chatbot when the script is loaded
 loadChatBot();

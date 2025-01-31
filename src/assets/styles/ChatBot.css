@@ -25,6 +25,7 @@
 
 .chat-button:hover {
   transform: scale(1.03);
+  background: linear-gradient(90deg, #478CFF, #2E66FF, #4CC8FF);
 }
 
 /* Gradient Animation */

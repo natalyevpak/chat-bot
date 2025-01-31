@@ -4,29 +4,11 @@ import vue from '@vitejs/plugin-vue';
 export default defineConfig({
   plugins: [vue()],
   build: {
-    lib: {
-      entry: 'src/wialon-chatbot.js', // Entry point
-      name: 'WialonChatBot',
-      fileName: 'wialon-chatbot'
-    },
+    outDir: 'dist', // Output directory
     rollupOptions: {
-      external: ['vue', 'primevue'], // Exclude Vue & PrimeVue to avoid duplication
       output: {
-        globals: {
-          vue: 'Vue',
-          primevue: 'PrimeVue'
-        }
-      }
-    }
-  },
-  css: {
-    preprocessorOptions: {
-      css: {
-        additionalData: `
-          @import "@/assets/base.css";
-          @import "@/assets/main.css";
-          @import "@/assets/styles/ChatBot.css";
-        `
+        format: 'iife', // Immediately Invoked Function Expression (No import needed)
+        entryFileNames: 'wialon-chatbot.js', // Output file name
       }
     }
   }

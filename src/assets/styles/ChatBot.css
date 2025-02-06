@@ -26,6 +26,7 @@
 .chat-button:hover {
   transform: scale(1.03);
   background: linear-gradient(90deg, #478CFF, #2E66FF, #4CC8FF) !important;
+  border-color: none;
 }
 
 /* Gradient Animation */
@@ -54,6 +55,8 @@
   overflow: hidden;
   padding-bottom: 2px;
 }
+
+
 
 /* Chat Header */
 .chat-header {
@@ -87,8 +90,9 @@
 
 /* Chat Messages */
 .chat-messages {
-  max-height: 280px;
+  max-height: 300px;
   overflow-y: auto;
+  scroll-behavior: smooth;
   padding: 6px;
   display: flex;
   flex-direction: column;

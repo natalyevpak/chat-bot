@@ -12,13 +12,13 @@
         <Card class="no-padding-card">
           <template #content>
             <div class="chat-header">
-              <span>✨ Wialon Start AI Chatbot ✨</span>
+              <span>✨ Wialon Start Assistant ✨</span>
               <button class="close-btn" @click="toggleChat">
                 <i class="pi pi-times"></i>
               </button>
             </div>
 
-            <div class="chat-messages">
+            <div ref="chatContainer" class="chat-messages">
             <div 
               v-for="(msg, index) in messages" 
               :key="index" 
@@ -59,16 +59,18 @@
                 <i class="pi pi-send"></i>
               </button>
             </div>
-
           </template>
         </Card>
       </div>
     </Transition>
+
+
+    
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { nextTick, ref } from 'vue';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import Card from 'primevue/card';
@@ -79,7 +81,15 @@ const userInput = ref('');
 const messages = ref([
   { text: 'Hi! How can I help you?', sender: 'bot' }
 ]);
+const chatContainer = ref(null);
 
+const scrollToBottom = () => {
+  nextTick(() => {
+    if (chatContainer.value) {
+      chatContainer.value.scrollTop = chatContainer.value.scrollHeight;
+    }
+  });
+};
 const toggleChat = () => {
   isOpen.value = !isOpen.value;
 };
@@ -87,14 +97,23 @@ const toggleChat = () => {
 const sendMessage = () => {
   if (userInput.value.trim() === '') return;
 
+  // Hide predefined messages after first message
+  showPredefined.value = false;
+
   messages.value.push({ text: userInput.value, sender: 'user' });
+  userInput.value = '';
+
+  // Scroll to bottom after user message
+  scrollToBottom();
 
   setTimeout(() => {
-    messages.value.push({ text: 'Works! We just need connect the nova bot.', sender: 'bot' });
-  }, 500);
+    messages.value.push({ text: 'Works! We just need to connect the Nova bot.', sender: 'bot' });
 
-  userInput.value = '';
+    // Scroll to bottom after bot response
+    scrollToBottom();
+  }, 500);
 };
+
 
 const showPredefined = ref(true); // Controls button visibility
 
@@ -110,8 +129,6 @@ const sendPredefinedMessage = (text) => {
   // Hide predefined buttons after first click
   showPredefined.value = false;
 };
-
-
 
 </script>
 

@@ -12,15 +12,23 @@ const loadCSS = (href) => {
   document.head.appendChild(link);
 };
 
-// Load PrimeVue styles manually
+// Check if running locally or on Netlify
+const isLocal = window.location.hostname === 'localhost';
+
+// Define the correct base URL for assets
+const BASE_URL = isLocal
+  ? 'http://localhost:5173/src/assets' // Local Vite dev server path
+  : 'https://wialon-chat-bot.netlify.app/assets';
+
+// Load PrimeVue styles
 loadCSS('https://unpkg.com/primeicons/primeicons.css'); // PrimeIcons
 loadCSS('https://unpkg.com/primevue/resources/primevue.min.css'); // PrimeVue base styles
 loadCSS('https://unpkg.com/@primevue/themes/lara/light/theme.css'); // PrimeVue Lara theme (light mode)
 
-// Load custom styles from Netlify-hosted chatbot
-loadCSS('https://wialon-chat-bot.netlify.app/assets/base.css');
-loadCSS('https://wialon-chat-bot.netlify.app/assets/main.css');
-loadCSS('https://wialon-chat-bot.netlify.app/assets/styles/ChatBot.css');
+// Load chatbot custom styles
+loadCSS(`${BASE_URL}/base.css`);
+loadCSS(`${BASE_URL}/main.css`);
+loadCSS(`${BASE_URL}/styles/ChatBot.css`);
 
 const loadChatBot = () => {
   const chatbotContainer = document.createElement('div');

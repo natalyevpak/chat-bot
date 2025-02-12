@@ -29,18 +29,11 @@ const MyPreset = definePreset(Lara, {
 app.use(PrimeVue, {
     theme: {
         preset: MyPreset,
-
+        options: {
+            darkModeSelector: false || 'none',
+        }
     },
 });
-
-document.addEventListener("DOMContentLoaded", () => {
-    setTimeout(() => {
-        document.querySelectorAll('[data-primevue-style-id="global-variables"]').forEach(styleTag => {
-            styleTag.innerHTML = styleTag.innerHTML.replace(/@media \(prefers-color-scheme: dark\) {[^}]+}/g, '');
-        });
-    }, 100); // Даем PrimeVue загрузиться
-});
-
 
 app.mount('#app')
 

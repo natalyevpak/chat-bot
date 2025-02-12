@@ -1,5 +1,3 @@
-import './assets/main.css'
-
 import { createApp } from 'vue'
 import PrimeVue from 'primevue/config';
 import Lara from '@primevue/themes/lara';
@@ -35,4 +33,15 @@ app.use(PrimeVue, {
     },
 });
 
+document.addEventListener("DOMContentLoaded", () => {
+    setTimeout(() => {
+        document.querySelectorAll('[data-primevue-style-id="global-variables"]').forEach(styleTag => {
+            styleTag.innerHTML = styleTag.innerHTML.replace(/@media \(prefers-color-scheme: dark\) {[^}]+}/g, '');
+        });
+    }, 100); // Даем PrimeVue загрузиться
+});
+
+
 app.mount('#app')
+
+

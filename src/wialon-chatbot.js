@@ -26,9 +26,9 @@ loadCSS('https://unpkg.com/primevue/resources/primevue.min.css'); // PrimeVue ba
 loadCSS('https://unpkg.com/@primevue/themes/lara/light/theme.css'); // PrimeVue Lara theme (light mode)
 
 // Load chatbot custom styles
-loadCSS(`${BASE_URL}/base.css`);
-loadCSS(`${BASE_URL}/main.css`);
-loadCSS(`${BASE_URL}/styles/ChatBot.css`);
+//loadCSS(`${BASE_URL}/base.css`);
+//loadCSS(`${BASE_URL}/main.css`);
+//loadCSS(`${BASE_URL}/styles/ChatBot.css`);
 
 const loadChatBot = () => {
   const chatbotContainer = document.createElement('div');

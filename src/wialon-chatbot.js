@@ -58,9 +58,12 @@ const loadChatBot = () => {
 
   app.use(PrimeVue, {
     theme: {
-      preset: MyPreset,
+        preset: MyPreset,
+        options: {
+            darkModeSelector: false || 'none',
+        }
     },
-  });
+});
 
   app.mount('#wialon-chatbot');
 };

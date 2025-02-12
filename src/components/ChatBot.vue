@@ -114,7 +114,6 @@ const sendMessage = () => {
   }, 500);
 };
 
-
 const showPredefined = ref(true); // Controls button visibility
 
 const sendPredefinedMessage = (text) => {

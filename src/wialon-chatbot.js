@@ -20,7 +20,6 @@ const BASE_URL = isLocal
   ? 'http://localhost:5173/src/assets' // Local Vite dev server path
   : 'https://wialon-chat-bot.netlify.app/assets';
 
-// Load PrimeVue styles
 loadCSS('https://unpkg.com/primeicons/primeicons.css'); // PrimeIcons
 loadCSS('https://unpkg.com/primevue/resources/primevue.min.css'); // PrimeVue base styles
 loadCSS('https://unpkg.com/@primevue/themes/lara/light/theme.css'); // PrimeVue Lara theme (light mode)

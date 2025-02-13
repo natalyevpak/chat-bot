@@ -3,6 +3,7 @@
     <Button 
       label="Wialon Chat" 
       class="chat-button" 
+      :class="{ 'no-animation': isOpen }"
       @click="toggleChat"
       iconPos="left"
     />
@@ -12,7 +13,7 @@
         <Card class="no-padding-card">
           <template #content>
             <div class="chat-header">
-              <span>✨ Wialon Start Assistant ✨</span>
+              <span>✨ Wialon Trial Assistant ✨</span>
               <button class="close-btn" @click="toggleChat">
                 <i class="pi pi-times"></i>
               </button>
@@ -51,8 +52,6 @@
               />
             </div>
           </div>
-
-
             <div class="chat-input">
               <InputText v-model="userInput" class="custom-input" @keyup.enter="sendMessage" placeholder="Type a message..." />
               <button class="send-btn" @click="sendMessage">
@@ -63,9 +62,6 @@
         </Card>
       </div>
     </Transition>
-
-
-    
   </div>
 </template>
 

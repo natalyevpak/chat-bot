@@ -25,8 +25,13 @@
 
 .chat-button:hover {
   transform: scale(1.03);
-  background: linear-gradient(90deg, #478CFF, #2E66FF, #4CC8FF) !important;
   border-color: none;
+}
+
+/* Remove animation when chat is open */
+.no-animation {
+  animation: none !important;
+  transform: none !important;
 }
 
 /* Gradient Animation */
@@ -56,8 +61,6 @@
   padding-bottom: 2px;
 }
 
-
-
 /* Chat Header */
 .chat-header {
   display: flex;
@@ -65,18 +68,14 @@
   align-items: center;
   padding: 12px 8px 12px 92px;
   font-weight: bold;
-  background: #2E66FF;
   color: white;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
-}
-
-
-
-/* Style the sparkles icon */
-.sparkles-icon {
-  font-size: 16px;
-  color: white; /* Yellow sparkles */
+  font-size: 17px;
+  /* Gradient background with animation */
+  background: linear-gradient(90deg, #478CFF, #2E66FF, #4CC8FF);
+  background-size: 300% 300%;
+  animation: gradient-animation 6s ease infinite;
 }
 
 .close-btn {
@@ -119,7 +118,6 @@
 }
 
 
-
 /* Message Styles */
 .message {
   padding: 10px 12px;
@@ -154,7 +152,7 @@
 
 
 .predefined-btn {
-  background-color: #d1d1d1 !important; /* Force gray background */
+  background-color: #a1a1a1 !important; /* Force gray background */
   border: none !important;
   color: white !important; /* Ensure text is dark */
   font-size: 12px;
@@ -162,14 +160,13 @@
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
   font-weight: normal !important; /* Ensure text is not bold */
-  padding: 6px;
+  padding: 8px;
 }
 
 .predefined-btn:hover {
-  background-color: #bcbcbc !important; /* Darker gray on hover */
+  background-color: #aaaaaa !important; /* Darker gray on hover */
   border: none !important;
 }
-
 
 
 /* Chat Input */

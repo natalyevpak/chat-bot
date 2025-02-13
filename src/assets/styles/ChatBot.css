@@ -157,6 +157,7 @@
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
   font-weight: normal !important; /* Ensure text is not bold */
+  padding: 10px;
 }
 
 .predefined-btn:hover {

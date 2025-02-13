@@ -146,6 +146,7 @@
   justify-content: center;
   margin-bottom: 4px; /* Moves spacing below instead of above */
   margin-top: 40px; /* Moves spacing below instead of above */
+  padding: 10px;
 }
 
 .predefined-btn {
@@ -157,8 +158,8 @@
   cursor: pointer;
   transition: background-color 0.2s ease-in-out;
   font-weight: normal !important; /* Ensure text is not bold */
-  padding: 10px;
 }
+
 
 .predefined-btn:hover {
   background-color: #aaaaaa !important; /* Darker gray on hover */

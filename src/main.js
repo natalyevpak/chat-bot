@@ -35,6 +35,26 @@ app.use(PrimeVue, {
     },
 });
 
+// Function to dynamically load CSS
+const loadCSS = (href) => {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = href;
+    document.head.appendChild(link);
+  };
+  
+  // Check if running locally or on Netlify
+  const isLocal = window.location.hostname === 'localhost';
+  
+  // Define the correct base URL for assets
+  const BASE_URL = isLocal
+    ? 'http://localhost:5173/src/assets' // Local Vite dev server path
+    : 'https://wialon-chat-bot.netlify.app/assets';
+  
+  loadCSS('https://unpkg.com/primeicons/primeicons.css'); // PrimeIcons
+  loadCSS('https://unpkg.com/primevue/resources/primevue.min.css'); // PrimeVue base styles
+  loadCSS('https://unpkg.com/@primevue/themes/lara/light/theme.css'); // PrimeVue Lara theme (light mode)
+
 app.mount('#app')
 
 

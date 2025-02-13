@@ -20,16 +20,58 @@
             </div>
 
             <div ref="chatContainer" class="chat-messages">
-            <div 
-              v-for="(msg, index) in messages" 
-              :key="index" 
-              :class="msg.sender === 'user' ? 'user-message' : 'bot-message'"
-            >
-              <div class="message-header">
-                {{ msg.sender === 'user' ? 'User' : 'Assistant' }}
-              </div>
-              <div :class="['message', msg.sender]">
-                {{ msg.text }}
+              <div 
+                v-for="(msg, index) in messages" 
+                :key="index" 
+                :class="msg.sender === 'user' ? 'user-message' : 'bot-message'"
+              >
+                <div class="message-header">
+                  {{ msg.sender === 'user' ? 'User' : 'Assistant' }}
+                </div>
+                <div :class="['message', msg.sender]">
+                  {{ msg.text }}
+                </div>
+
+                <!-- Feedback Buttons for Last Bot Message -->
+                <!-- Hide feedback for the first bot message -->
+                  <div
+                    v-if="msg.sender === 'bot' && index === lastBotMessageIndex && index !== 0"
+                    class="footer-buttons"
+                  >
+
+                  <Button
+                    icon="pi pi-thumbs-up"
+                    class="like-btn"
+                    text
+                    aria-label="Like"
+                    style="color: #127543"
+                    @click="openFeedbackDialog('positive')"
+                  />
+                  <Button
+                    icon="pi pi-thumbs-down"
+                    class="dislike-btn"
+                    text
+                    aria-label="Dislike"
+                    style="color: #D40E42"
+                    @click="openFeedbackDialog('negative')"
+                  />
+                  <Button
+                    icon="pi pi-envelope"
+                    class="mail-btn"
+                    text
+                    aria-label="Share"
+                    style="color: #1e1eee"
+                    @click="openSendToSupportDialog"
+                  />
+                  <Button
+                    :icon="copyState === index ? 'pi pi-check' : 'pi pi-copy'"
+                    class="copy-btn"
+                    text
+                    aria-label="Copy"
+                    style="color: black"
+                    @click="copyToClipboard(msg.text, index)"
+                  />
+                </div>
               </div>
             </div>
 
@@ -48,12 +90,12 @@
               <Button 
                 label="How to contact support?" 
                 class="predefined-btn" 
-                @click="sendPredefinedMessage('How to contact support?')"
+                @click="sendPredefinedMessage('How to contact support')"
               />
             </div>
-          </div>
+
             <div class="chat-input">
-              <InputText v-model="userInput" class="custom-input" @keyup.enter="sendMessage" placeholder="Type a message..." />
+              <InputText v-model="userInput" class="custom-input" @keyup.enter="sendMessage" placeholder="Ask a question..." />
               <button class="send-btn" @click="sendMessage">
                 <i class="pi pi-send"></i>
               </button>
@@ -62,15 +104,32 @@
         </Card>
       </div>
     </Transition>
+
+    <!-- Feedback Dialog -->
+    <Dialog 
+  v-model:visible="isFeedbackDialogVisible" 
+  :header="feedbackTitle"
+  modal="false"
+  autoFocus="false"
+  class="feedback-dialog"
+>
+      <p>{{ feedbackMessage }}</p>
+      <div class="feedback-actions">
+        <Button label="Cancel" @click="isFeedbackDialogVisible = false" />
+        <Button label="Submit" @click="submitFeedback" />
+      </div>
+    </Dialog>
   </div>
 </template>
 
+
 <script setup>
-import { nextTick, ref } from 'vue';
+import { nextTick, ref, computed, watchEffect } from 'vue';
 import Button from 'primevue/button';
 import InputText from 'primevue/inputtext';
 import Card from 'primevue/card';
 import { Transition } from 'vue';
+import Dialog from 'primevue/dialog';
 
 const isOpen = ref(false);
 const userInput = ref('');
@@ -79,6 +138,13 @@ const messages = ref([
 ]);
 const chatContainer = ref(null);
 
+const lastBotMessageIndex = computed(() => {
+  if (!messages.value.length) return null; // Prevents issues when array is empty
+  const lastIndex = [...messages.value].reverse().findIndex(msg => msg.sender === 'bot');
+  return lastIndex === -1 ? null : messages.value.length - 1 - lastIndex;
+});
+
+
 const scrollToBottom = () => {
   nextTick(() => {
     if (chatContainer.value) {
@@ -86,6 +152,8 @@ const scrollToBottom = () => {
     }
   });
 };
+
+
 const toggleChat = () => {
   isOpen.value = !isOpen.value;
 };
@@ -118,12 +186,38 @@ const sendPredefinedMessage = (text) => {
 
   // Add bot response after a delay
   setTimeout(() => {
-    messages.value.push({ text: 'This is an automated response to your query.', sender: 'bot' });
+    messages.value.push({ text: 'Connect nova and I will tell you!', sender: 'bot' });
   }, 500);
 
   // Hide predefined buttons after first click
   showPredefined.value = false;
 };
+
+const isFeedbackDialogVisible = ref(false);
+const feedbackTitle = ref('');
+const feedbackMessage = ref('');
+const copyState = ref(null);
+
+const openFeedbackDialog = (type) => {
+  isFeedbackDialogVisible.value = true;
+  feedbackTitle.value = type === 'positive' ? 'Thank You!' : 'We appreciate your feedback';
+  feedbackMessage.value = type === 'positive' ? 'Glad you found this helpful!' : 'Tell us what went wrong.';
+};
+
+const openSendToSupportDialog = () => {
+  isFeedbackDialogVisible.value = true;
+  feedbackTitle.value = 'Send to Support';
+  feedbackMessage.value = 'Would you like to forward this to our support team?';
+};
+
+const copyToClipboard = (text, index) => {
+  navigator.clipboard.writeText(text);
+  copyState.value = index;
+  setTimeout(() => {
+    copyState.value = null;
+  }, 1000);
+};
+
 
 </script>
 
